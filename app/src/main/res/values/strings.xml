@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Non-Gregorian Calendars</string>
+    <string name="title">Title</string>
+    <string name="repetition">Repetition</string>
+    <string name="rrule">RRULE</string>
+    <string name="calendar">Calendar</string>
+    <string name="create_event">Create event</string>
+    <string name="rrule_hint">FREQ=YEARLY</string>
+    <string name="gregorian">RSCALE=GREGORIAN</string>
+    <string name="rscale">RSCALE</string>
+    <string name="choose_calendar">Choose your calendar</string>
 </resources>

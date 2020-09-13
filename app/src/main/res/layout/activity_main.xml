@@ -1,18 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_event"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:id="@+id/event_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:outlineProvider="bounds">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/event_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_view_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:padding="4dp"
+                android:text="@string/title"
+                android:textColor="?colorAccent"
+                android:textSize="@dimen/normal_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edit_text_event_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_title"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/medium_margin"
+                android:hint="@string/title"
+                android:inputType="textCapSentences"
+                android:maxLength="180"
+                android:maxLines="1"
+                android:minEms="20"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/day_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/text_view_title"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_title"
+                tools:ignore="Autofill" />
+
+            <TextView
+                android:id="@+id/text_view_event_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:paddingTop="@dimen/smaller_margin"
+                android:paddingBottom="@dimen/smaller_margin"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/day_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_text_event_title"
+                tools:ignore="RtlSymmetry"
+                tools:text="January 1 1970" />
+
+
+            <TextView
+                android:id="@+id/text_view_event_end_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:paddingTop="@dimen/smaller_margin"
+                android:paddingBottom="@dimen/smaller_margin"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/day_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_event_start_date"
+                tools:ignore="RtlSymmetry"
+                tools:text="January 1 1970" />
+
+
+            <TextView
+                android:id="@+id/text_view_rrule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:paddingTop="@dimen/smaller_margin"
+                android:paddingBottom="@dimen/smaller_margin"
+                android:text="@string/rrule"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/day_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_event_end_date"
+                tools:ignore="RtlSymmetry"
+                tools:text="RRULE" />
+
+            <EditText
+                android:id="@+id/edit_text_event_rrule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_title"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/medium_margin"
+                android:hint="@string/rrule_hint"
+                android:inputType="textCapSentences"
+                android:maxLength="180"
+                android:maxLines="1"
+                android:minEms="20"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/day_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_rrule"
+                tools:ignore="Autofill" />
+
+            <TextView
+                android:id="@+id/text_view_rscale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:paddingTop="@dimen/smaller_margin"
+                android:paddingBottom="@dimen/smaller_margin"
+                android:text="@string/rscale"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/day_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_text_event_rrule"
+                tools:ignore="RtlSymmetry"
+                tools:text="Rscale" />
+
+            <EditText
+                android:id="@+id/edit_text_rscale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_view_title"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginEnd="@dimen/medium_margin"
+                android:hint="@string/gregorian"
+                android:inputType="textCapSentences"
+                android:maxLength="180"
+                android:maxLines="1"
+                android:minEms="20"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorGray"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/day_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_rscale"
+                tools:ignore="Autofill" />
+
+
+            <TextView
+                android:id="@+id/text_view_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:paddingTop="@dimen/smaller_margin"
+                android:paddingBottom="@dimen/smaller_margin"
+                android:text="@string/calendar"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/day_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_text_rscale"
+                tools:ignore="RtlSymmetry"
+                tools:text="CALENDAR" />
+
+            <TextView
+                android:id="@+id/text_view_calendar_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:paddingTop="@dimen/smaller_margin"
+                android:paddingBottom="@dimen/smaller_margin"
+                android:text="@string/choose_calendar"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/day_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text_view_calendar"
+                app:layout_constraintTop_toBottomOf="@+id/edit_text_rscale"
+                tools:ignore="RtlSymmetry"
+                tools:text="Local" />
+
+            <TextView
+                android:id="@+id/text_view_rrule_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:paddingTop="@dimen/smaller_margin"
+                android:paddingBottom="@dimen/smaller_margin"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/day_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text_view_rrule"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_calendar"
+                tools:ignore="RtlSymmetry"
+                tools:text="FREQ=YEARRLY" />
+
+            <Button
+                android:id="@+id/create_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:paddingTop="@dimen/smaller_margin"
+                android:paddingBottom="@dimen/smaller_margin"
+                android:text="@string/create_event"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/day_text_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_view_rrule_text"
+                tools:ignore="RtlSymmetry"
+                tools:text="Create event" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>
