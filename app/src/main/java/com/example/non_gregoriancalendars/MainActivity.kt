@@ -8,7 +8,6 @@ import android.content.pm.PackageManager
 import android.database.Cursor
 import android.os.Bundle
 import android.provider.CalendarContract
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -34,8 +33,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_CALENDAR), 100)
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_CALENDAR), 100)
+        ActivityCompat.requestPermissions(
+            this, arrayOf(
+                getPermissionString(PERMISSION_READ_CALENDAR), getPermissionString(
+                    PERMISSION_WRITE_CALENDAR
+                )
+            ), 100
+        )
+
 
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -92,7 +97,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-        contentResolver.insert(uri, values) ?: return
+        contentResolver.insert(uri, values)
     }
 
     @SuppressLint("InflateParams")
@@ -220,7 +225,6 @@ class MainActivity : AppCompatActivity() {
         } finally {
             cursor?.close()
         }
-        Log.i("calendarstoshow", calendars.toString())
     }
 
     override fun onRequestPermissionsResult(
@@ -230,5 +234,16 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         fetchCalendars()
+    }
+
+    private fun getPermissionString(id: Int) = when (id) {
+        PERMISSION_READ_CALENDAR -> Manifest.permission.READ_CALENDAR
+        PERMISSION_WRITE_CALENDAR -> Manifest.permission.WRITE_CALENDAR
+        else -> ""
+    }
+
+    companion object {
+        const val PERMISSION_READ_CALENDAR = 1
+        const val PERMISSION_WRITE_CALENDAR = 2
     }
 }
